@@ -4,10 +4,21 @@ import java.util.Date;
 
 public class User
 {
+    private int t_user_id;
     private String userName;
     private String emailAddress;
     private int age;
     private Date birthday;
+    
+    
+    public int getT_user_id()
+    {
+        return t_user_id;
+    }
+    public void setT_user_id(int t_user_id)
+    {
+        this.t_user_id = t_user_id;
+    }
     public String getUserName()
     {
         return userName;

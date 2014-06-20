@@ -4,6 +4,7 @@
     "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 <sqlMapConfig>
 	<properties resource="db.properties"/>
+	<settings useStatementNamespaces="true"/>
 	<transactionManager type="JDBC">
 		<dataSource type="SIMPLE">
 			<property name="JDBC.Driver" value="${driver}"/>
@@ -12,5 +13,5 @@
       		<property name="JDBC.Password" value="${pword}"/>
 		</dataSource>
 	</transactionManager>
-	<sqlMap resource="com/oschina/ibatis/bean/User/user.xml"/>
+	<sqlMap resource="com/oschina/ibatis/bean/user.xml"/>
 </sqlMapConfig>

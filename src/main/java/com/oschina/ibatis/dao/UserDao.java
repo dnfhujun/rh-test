@@ -31,4 +31,9 @@ public class UserDao
     {
         return (User)sqlMapClient.queryForObject("user.query_user_by_id", uid);
     }
+    
+    public int insertUser(User user) throws SQLException
+    {
+        return (Integer)sqlMapClient.insert("user.insert_user",user);
+    }
 }

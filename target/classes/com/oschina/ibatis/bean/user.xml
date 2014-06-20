@@ -2,7 +2,19 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="user">
+	<sql id="user_column">
+		username,emailaddress,age,birthday
+	</sql>
 	<select id="query_user_by_id" resultClass="com.oschina.ibatis.bean.User" parameterClass="long">
-		select * from User where uid=#uid#
+		select * from t_user where t_user_id=#uid#
 	</select>
+	
+	<insert id="insert_user">
+		insert into t_user(<include refid="user_column"/>) values(
+			#userName#,#emailAddress#,#age#,#birthday#
+		)
+		<selectKey resultClass="int" keyProperty="t_user_id">
+			SELECT LAST_INSERT_ID() AS VALUE
+		</selectKey>
+	</insert>
 </sqlMap>
