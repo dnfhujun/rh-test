@@ -1,6 +1,7 @@
 package com.oschina.ibatis.bean;
 
 import java.util.Date;
+import java.util.List;
 
 public class User
 {
@@ -9,8 +10,18 @@ public class User
     private String emailAddress;
     private int age;
     private Date birthday;
+    private List<Son> sons;
     
     
+    
+    public List<Son> getSons()
+    {
+        return sons;
+    }
+    public void setSons(List<Son> sons)
+    {
+        this.sons = sons;
+    }
     public int getT_user_id()
     {
         return t_user_id;

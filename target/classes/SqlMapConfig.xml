@@ -14,4 +14,5 @@
 		</dataSource>
 	</transactionManager>
 	<sqlMap resource="com/oschina/ibatis/bean/user.xml"/>
+	<sqlMap resource="com/oschina/ibatis/bean/son.xml"/>
 </sqlMapConfig>

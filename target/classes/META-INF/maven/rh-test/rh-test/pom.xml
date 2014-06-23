@@ -22,11 +22,6 @@
       <scope>test</scope>
     </dependency>
     
-    <dependency>
-		<groupId>commons-beanutils</groupId>
-		<artifactId>commons-beanutils</artifactId>
-		<version>1.9.1</version>
-	</dependency>
      <dependency>
 		<groupId>org.apache.ibatis</groupId>
 		<artifactId>ibatis-sqlmap</artifactId>
@@ -37,5 +32,10 @@
 	  <artifactId>mysql-connector-java</artifactId> 
 	  <version>5.0.5</version> 
 	</dependency>   
+	<dependency>
+		<groupId>commons-beanutils</groupId>
+		<artifactId>commons-beanutils</artifactId>
+		<version>1.9.1</version>
+	</dependency>
   </dependencies>
 </project>

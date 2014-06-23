@@ -5,6 +5,22 @@
 	<sql id="user_column">
 		username,emailaddress,age,birthday
 	</sql>
+	
+	<resultMap class="com.oschina.ibatis.bean.User" id="select_user_with_son_result" groupBy="t_user_id">
+		<result property="t_user_id" column="t_user_id"/>
+		<result property="userName" column="username"/>
+		<result property="emailAddress" column="emailaddress"/>
+		<result property="age" column="age"/>
+		<result property="birthday" column="birthday"/>
+		<result property="sons" resultMap="user.son_result"/>
+	</resultMap>
+	
+	<resultMap class="com.oschina.ibatis.bean.Son" id="son_result">
+		<result property="t_son_id" column="t_son_id"/>
+		<result property="name" column="name"/>
+		<result property="user_id" column="user_id"/>
+	</resultMap>
+	
 	<select id="query_user_by_id" resultClass="com.oschina.ibatis.bean.User" parameterClass="long">
 		select * from t_user where t_user_id=#uid#
 	</select>
@@ -17,4 +33,8 @@
 			SELECT LAST_INSERT_ID() AS VALUE
 		</selectKey>
 	</insert>
+	
+	<select id="select_user_with_son" resultMap="select_user_with_son_result">
+		select * from t_user u,t_son s where u.t_user_id = s.user_id
+	</select>
 </sqlMap>

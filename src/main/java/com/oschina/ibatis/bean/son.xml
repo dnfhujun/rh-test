@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="son">
+	<sql id="son_column">
+		name,user_id
+	</sql>
+	
+	<insert id="insert_son">
+		insert into t_son(<include refid="son_column"/>) values
+		(#name#,#user_id#)
+		<selectKey resultClass="int" keyProperty="t_son_id">
+			SELECT LAST_INSERT_ID() AS VALUE
+		</selectKey>
+	</insert>
+</sqlMap>

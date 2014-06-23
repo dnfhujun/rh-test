@@ -3,6 +3,7 @@ package com.oschina.ibatis.dao;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -11,21 +12,7 @@ import com.oschina.ibatis.bean.User;
 
 public class UserDao
 {
-    private static SqlMapClient  sqlMapClient  = null;
-    
-    static
-    {
-        try
-        {
-            Reader reader = Resources.getResourceAsReader("SqlMapConfig.xml");
-            sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(reader);
-            reader.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
+    private static SqlMapClient  sqlMapClient  = SqlMapClientFactory.getStance();
     
     public User getUserById(long uid) throws SQLException
     {
@@ -35,5 +22,26 @@ public class UserDao
     public int insertUser(User user) throws SQLException
     {
         return (Integer)sqlMapClient.insert("user.insert_user",user);
+    }
+    /**
+     * 批量插入user
+     * @param users
+     * @throws SQLException 
+     */
+    public void batchInsertUser(List<User> users) throws SQLException
+    {
+        sqlMapClient.startTransaction();
+        sqlMapClient.startBatch();
+        for(User user : users)
+        {
+            insertUser(user);
+        }
+        sqlMapClient.executeBatch();
+        sqlMapClient.commitTransaction();
+    }
+    
+    public User queryUserWithSons(int userId) throws SQLException
+    {
+        return (User)sqlMapClient.queryForObject("user.select_user_with_son",userId);
     }
 }
