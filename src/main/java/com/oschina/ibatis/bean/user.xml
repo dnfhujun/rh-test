@@ -37,4 +37,16 @@
 	<select id="select_user_with_son" resultMap="select_user_with_son_result">
 		select * from t_user u,t_son s where u.t_user_id = s.user_id
 	</select>
+	
+	<select id="select_user_by_criteria" resultClass="com.oschina.ibatis.bean.User" parameterClass="long">
+		select * from t_user
+		<dynamic prepend="where">
+			<isNotEmpty prepend="and" property="t_user_id" open="(" close=")">
+				t_user_id = #t_user_id#
+			</isNotEmpty>
+			<isEmpty prepend="and" property="t_user_id" open="(" close=")">
+				t_user_id in (1,2,3)
+			</isEmpty>
+		</dynamic>
+	</select>
 </sqlMap>

@@ -44,4 +44,9 @@ public class UserDao
     {
         return (User)sqlMapClient.queryForObject("user.select_user_with_son",userId);
     }
+    
+    public User querUserByCriteria(int userId) throws SQLException
+    {
+        return (User)sqlMapClient.queryForObject("user.select_user_by_criteria",userId);
+    }
 }
